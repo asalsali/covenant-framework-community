@@ -282,36 +282,6 @@ covenant-framework/
 
 ---
 
-## Covenant Model Suite
-
-The framework's governance rules can be fine-tuned into model weights, eliminating long system prompts and making governance resistant to prompt injection.
-
-**Open-source models:**
-
-| Model | Base | Size (Q4) | Purpose |
-|---|---|---|---|
-| **Adam** | Qwen2.5-3B | ~1.8GB | Entry point. Fast local inference on any laptop. |
-| **Eve** | Qwen2.5-7B | ~4.4GB | General-purpose governance. The default recommendation. |
-| **Seth** | Llama 3.1-8B | ~4.8GB | Framework-agnostic proof -- same governance, different base. |
-
-**Private models (Covenant Network):**
-
-| Model | Base | Size (Q4) | Purpose |
-|---|---|---|---|
-| **Moses** | Qwen2.5-32B | ~19GB | Full Constitution internalized for serious deployments. |
-| **Solomon** | Qwen2.5-14B | ~8GB | Edge cases, uncertainty handling, futility analysis patterns. |
-| **Elijah** | DeepSeek-Coder-V2 16B | ~9GB | Code-specialized for production agentic deployments. |
-
-Adam v1 proved the thesis: read-first behavior went from ~10% (bare model) to 100% (fine-tuned). The v2 pipeline uses 700 samples across 10 governance categories. Training notebooks are in `finetuning/`.
-
----
-
-## Benchmark results
-
-Terminal-Bench 2.0, 89 tasks: **67.4%** (no-retry), vs 42% for an ad-hoc prompted baseline on the same model. Constitution-derived rules beat ad-hoc prompting by 25 percentage points.
-
-Full methodology and leaderboard comparison in [BENCHMARK-FINDINGS.md](BENCHMARK-FINDINGS.md).
-
 ---
 
 ## Troubleshooting
@@ -341,12 +311,9 @@ Full methodology and leaderboard comparison in [BENCHMARK-FINDINGS.md](BENCHMARK
 
 ## Documentation
 
-- [System Model](docs/system-model.html) -- Interactive architecture diagram showing all 33 Constitution sections, 11 agent types, 8 hooks, and protocol flows.
 - [Process Diagram](docs/PROCESS-DIAGRAM.md) -- How the system operates from session start through agent shutdown.
-- [Benchmark Findings](BENCHMARK-FINDINGS.md) -- Terminal-Bench 2.0 results and methodology.
-- [Glossary](docs/glossary.html) -- Plain-language definitions for every framework term.
-- [Roadmap](ROADMAP.md) -- Upcoming work and integration plans.
-- [Technical Paper (v2.0)](https://covenant.foundation/TheCovenantFramework.pdf) -- Whitepaper with benchmark evidence and governance primitives.
+- [Glossary](GLOSSARY.md) -- Plain-language definitions for every framework term.
+- [Contributing](CONTRIBUTING.md) -- How to extend the framework.
 
 ---
 

@@ -11,8 +11,6 @@
     {"path": "LICENSE", "type": "file"},
     {"path": "install.sh", "type": "file"},
     {"path": "install-codex.ps1", "type": "file"},
-    {"path": "BENCHMARK-FINDINGS.md", "type": "file"},
-    {"path": "ROADMAP.md", "type": "file"},
     {"path": ".claude/agents/interpreter.md", "type": "agent"},
     {"path": ".claude/agents/analyst.md", "type": "agent"},
     {"path": ".claude/agents/writer.md", "type": "agent"},
