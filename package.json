@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A governance framework for multi-agent AI systems. Structure, lifecycle, and quality controls for AI agent orchestration.",
   "bin": {
-    "covenant": "./bin/covenant.js"
+    "covenant-framework": "bin/covenant.js"
   },
   "keywords": [
     "ai",
