@@ -1,182 +1,70 @@
-# Covenant Framework
+<p align="center">
+  <img src="assets/banner.png" alt="Covenant Framework" width="100%">
+</p>
 
-> A governance framework for multi-agent AI systems.
+<h1 align="center">Covenant Framework</h1>
 
-The Covenant Framework provides structure, lifecycle management, and quality controls for AI agent orchestration. It solves the coordination problems that emerge when multiple agents work together: who follows what rules, how they communicate, when they stop and reflect, and how the system recovers from failure.
+<p align="center">
+  <strong>A governance framework for multi-agent AI systems.</strong>
+</p>
 
-The framework runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [OpenAI Codex CLI](https://github.com/openai/codex) with no external dependencies. Inspired by governance patterns from  institutional traditions, it treats those patterns as engineering architecture.
+<p align="center">
+  <a href="https://www.npmjs.com/package/covenant-framework"><img src="https://img.shields.io/npm/v/covenant-framework?style=flat-square&color=cb3837" alt="npm"></a>
+  <a href="https://github.com/asalsali/covenant-framework-community/releases"><img src="https://img.shields.io/github/v/release/asalsali/covenant-framework-community?style=flat-square" alt="GitHub release"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Covenant%20Public%20License-blue?style=flat-square" alt="License"></a>
+  <a href="https://buymeacoffee.com/alexsalsali"><img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat-square&logo=buy-me-a-coffee" alt="Buy Me A Coffee"></a>
+</p>
 
----
-
-## Community vs Network
-
-The Covenant Framework ships as an open-core project. The **Community Edition** is free and fully functional. The **Network Edition** adds advanced runtime enforcement for teams and production deployments.
-
-| Capability | Community (Free) | Network (Paid) |
-|---|:---:|:---:|
-| Constitution (CLAUDE.md) | Full | Full |
-| Agent definitions (all 12) | Yes | Yes |
-| Core commands (16) | Yes | Yes |
-| Advanced commands (+22) | -- | Yes |
-| Agent gate hook | Yes | Yes |
-| Token logging hook | Yes | Yes |
-| Shutdown hook | Yes | Yes |
-| Session checks hook | Yes | Yes |
-| Input policy enforcement | -- | Yes |
-| World model enforcement | -- | Yes |
-| Health score computation | -- | Yes |
-| Hotspot detection | -- | Yes |
-| Compliance policy hook | -- | Yes |
-| Notification hook | -- | Yes |
-| Upgrade hook | -- | Yes |
-| Trust registry | -- | Yes |
-| Skills registry | -- | Yes |
-| Tribes (domain system) | -- | Yes |
-| Registry templates | Yes | Yes |
-
-**The tier boundary is at the hook level, not the agent level.** Agent definitions are markdown files with zero runtime cost -- they all ship free. Hooks are runtime enforcement -- that is the paid value.
-
-Install Community:
-```bash
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash
-```
-
-Install Network (requires Covenant Network membership):
-```bash
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash -s -- --tier network
-```
+<p align="center">
+  Structure, lifecycle management, and quality controls for AI agent orchestration.<br>
+  Runs inside <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a> or <a href="https://github.com/openai/codex">OpenAI Codex CLI</a> with no external dependencies.
+</p>
 
 ---
 
-## 5-minute quickstart
+## Install
 
 ```bash
-# 1. Install Claude Code
-npm install -g @anthropic-ai/claude-code
-
-# 2. Create a project and install Covenant
-mkdir my-project && cd my-project && git init
 npx covenant-framework init
-
-# 3. Start working
-claude
 ```
 
-When Claude starts, the framework activates automatically. Type your goal in plain language:
+Or with curl:
 
-```
-I want to build a REST API for user management
-```
-
-The Interpreter reads your request, checks system state, proposes a plan with specific agents, and waits for your approval. You say "go" and agents spawn, execute, write exit reports, and shut down. The system remembers what it learned for next time.
-
-That is it. No configuration files to write, no SDK to learn, no dashboard to set up.
-
----
-
-## Key concepts
-
-- **Constitution** (`CLAUDE.md`) -- 33 sections of immutable rules every agent inherits. No mandate, user request, or child agent can override them.
-- **Interpreter** -- The single agent that talks to you. It interprets your intent, proposes plans, spawns other agents, and routes all communication. Nothing executes until you approve.
-- **Orientation** (`registry/orientation.json`) -- A shared state file every agent reads to stay aligned: current focus, what to protect, active temptations, where the project stands.
-- **Agent lifecycle** -- Every agent follows the same arc: boot (Genesis Phase), execute its mandate, write an exit report, and shut down cleanly.
-- **Distillation** -- Agents never pass raw context to each other. All information is summarized to mandate-relevant essentials before handoff.
-- **Consolidation** -- Periodic pauses where no new agents spawn. The system distills memory, archives lineages, and measures progress toward the project goal.
-- **Three spawn gates** -- Before any agent is created, the system checks for overlapping mandates (overlap detection), excessive complexity (scope validation), and prior learnings (memory retrieval).
-
----
-
-## Quick start
-
-### 1. Install a supported runtime
-
-Claude Code (reference implementation):
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-OpenAI Codex CLI:
-```bash
-npm install -g @openai/codex
-```
-
-### 2a. New project
-
-Click **"Use this template"** on GitHub, or:
-```bash
-git clone https://github.com/asalsali/covenant-framework.git my-project
-cd my-project && claude
-```
-
-### 2b. Existing project
-
-Claude Code (Community Edition):
 ```bash
 curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash
 ```
 
-Claude Code (Network Edition):
+Then start working:
+
 ```bash
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash -s -- --tier network
+claude
+# "I want to build a REST API for user management"
 ```
 
-Codex on Windows:
-```powershell
-irm https://raw.githubusercontent.com/asalsali/covenant-framework/master/install-codex.ps1 | iex
-```
-
-Codex on macOS/Linux:
-```bash
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash -s -- --runtime codex
-```
-
-### 3. Start working
-
-```
-I want to [your goal here]
-```
-
-The Interpreter reads your request, checks system state, proposes a plan, and waits for your approval. That is it.
+The Interpreter reads your request, proposes a plan with specific agents, and waits for your approval. Agents spawn, execute, write exit reports, and shut down. The system remembers what it learned for next time. No configuration files to write, no SDK to learn.
 
 ---
 
-## Architecture: three roles
+## How it works
 
-| Role | What it does |
-|---|---|
-| **User** | Source of all mandates. Your intent clarifies over time through interaction (progressive discovery), not all at once upfront. |
-| **Interpreter** | The single agent that speaks to you. Carries your authority while operating under the same constraints as every other agent. Can be wrong, can be uncertain, and knows when to stop and ask. |
-| **Orientation** | A shared configuration file (`registry/orientation.json`) readable by every agent. Keeps the entire system aligned on current focus, risks, and project state. |
+<table>
+<tr><td width="33%">
 
-The Interpreter is the framework's central architectural choice. It is fully representative (speaks for you to the system) and fully bounded (follows the Constitution, has a context window, writes exit reports at shutdown like everyone else). When those two natures conflict, it signals the Uncertainty Protocol rather than guessing.
+### Three roles
+The **User** provides intent. The **Interpreter** translates it into agent plans. The **Orientation** keeps every agent aligned on current focus, risks, and project state.
 
----
+</td><td width="33%">
 
-## Agent lifecycle
+### Agent lifecycle
+Every agent follows the same arc: register, boot (Genesis Phase), execute its mandate, write an exit report, and shut down cleanly.
 
-```
-SPAWN
-  Agent is registered in the agent registry.
-  Three gates fire: overlap detection, scope validation, memory retrieval.
-      |
-      v
-GENESIS PHASE (boot sequence)
-  Read mandate, Constitution, Orientation, registry, prior exit reports, memos.
-  Form a world model before taking any action.
-      |
-      v
-EXECUTE
-  Work within mandate boundaries.
-  Communicate laterally via structured memos, upward via exit reports.
-      |
-      v
-SHUTDOWN
-  Write an exit report (structured JSON: findings, what worked, what failed, recommendations).
-  Update status to archived in the agent registry.
-  Notify parent. Do not linger.
-```
+</td><td width="33%">
 
-Periodically, the system runs a **consolidation cycle**: no new agents spawn, no new tasks begin. The system distills memory, archives completed lineages, and measures progress toward the project goal.
+### Spawn gates
+Before any agent is created, the system checks for overlapping mandates, excessive complexity, and prior learnings. Nothing spawns blindly.
+
+</td></tr>
+</table>
 
 ---
 
@@ -184,42 +72,54 @@ Periodically, the system runs a **consolidation cycle**: no new agents spawn, no
 
 | Agent | Role |
 |---|---|
-| **Interpreter** | Interprets what you need. The only agent that talks to you directly. |
+| **Interpreter** | The only agent that talks to you. Interprets intent, proposes plans, routes communication. |
 | **Analyst** | Researches and investigates. Produces findings, never final output. |
 | **Writer** | Builds things -- code, docs, structured output. |
-| **Synthesist** | Both research and output in one context. Expensive; used only when splitting would lose critical context. |
+| **Executor** | Deploys and ships. Git push, build commands, production operations. |
+| **Synthesist** | Research and output in one context. Used when splitting would lose critical context. |
 | **Guardian** | Audits system health. Detects Constitution violations. |
-| **Shepherd** | Monitors for drift, quiet failures, stale state. Briefs the Interpreter when you return. |
-| **Scribe** | Writes documentation about what exists. |
+| **Shepherd** | Monitors for drift, quiet failures, stale state. |
+| **Scribe** | Documents what exists. |
 | **Stress Tester** | Stress-tests plans before execution. Finds weaknesses, proposes remedies. |
 | **Futility Review** | Analyzes failures. Distinguishes execution errors from wrong goals. |
-| **Goal Challenge** | The dissenting voice. Asks "should we be doing this at all?" when evidence warrants it. |
-| **James** | Mediates when sibling agents disagree. Synthesizes observations without taking a side. |
+| **Goal Challenge** | The dissenting voice. Asks "should we be doing this at all?" |
+| **Mediator** | Mediates when sibling agents disagree. Synthesizes without taking a side. |
 
 ---
 
-## Commands (36)
+## Architecture
+
+```
+SPAWN ──> GENESIS PHASE ──> EXECUTE ──> SHUTDOWN
+  │         Read mandate,      Work within       Write exit report.
+  │         Constitution,      mandate            Archive. Notify
+  │         Orientation,       boundaries.        parent. Do not
+  │         prior learnings.                      linger.
+  │
+  └── Three gates fire: overlap detection,
+      scope validation, memory retrieval.
+```
+
+Periodically, the system runs a **consolidation cycle**: no new agents spawn, no new tasks begin. The system distills memory, archives completed lineages, and measures progress toward the project goal.
+
+---
+
+## Commands
 
 | Category | Commands |
 |---|---|
 | **Spawning** | `/spawn`, `/synthesize` |
-| **Observation** | `/agent-registry`, `/lineage`, `/tithe`, `/audit`, `/inherit`, `/remember`, `/territory` |
-| **Planning** | `/foresee`, `/stress-test`, `/preflight`, `/covenant`, `/mediate`, `/assess` |
+| **Observation** | `/genealogy`, `/lineage`, `/tithe`, `/audit`, `/inherit`, `/remember` |
+| **Planning** | `/foresee`, `/stress-test`, `/preflight`, `/mediate`, `/assess` |
 | **Communication** | `/memo` |
-| **Lifecycle** | `/consolidation`, `/checkpoint`, `/binding`, `/fast`, `/acknowledge-loss`, `/retrospective` |
-| **Integration** | `/welcome` |
+| **Lifecycle** | `/consolidate`, `/checkpoint`, `/binding`, `/acknowledge-loss`, `/retrospective` |
 | **Intervention** | `/descend`, `/reset`, `/reinit` |
-| **Reconstruction** | `/nehemiah` |
-| **Governance** | `/governance` |
-| **Ambiguity** | `/daniel` |
 | **Onboarding** | `/genesis` |
-| **Compliance** | `/reconcile` |
-| **Maintenance** | `/upgrade` |
-| **System** | `/amend`, `/shadow`, `/judges`, `/compliance` |
+| **Governance** | `/governance`, `/compliance`, `/amend`, `/reconcile` |
 
 ---
 
-## How the system handles failure
+## Failure handling
 
 The framework has a graduated response to problems:
 
@@ -232,105 +132,85 @@ The framework has a graduated response to problems:
 
 ---
 
+## Community vs Network
+
+The Covenant Framework ships as an open-core project. The **Community Edition** is free and fully functional. The **Network Edition** adds advanced runtime enforcement for teams and production deployments.
+
+| Capability | Community | Network |
+|---|:---:|:---:|
+| Constitution (all 36 sections) | Yes | Yes |
+| Agent definitions (all 12) | Yes | Yes |
+| Core hooks (4) | Yes | Yes |
+| Advanced hooks (+9) | -- | Yes |
+| Core commands (16) | Yes | Yes |
+| Advanced commands (+22) | -- | Yes |
+| Input policy enforcement | -- | Yes |
+| World model enforcement | -- | Yes |
+| Health scoring | -- | Yes |
+| Hotspot detection | -- | Yes |
+| Progressive trust | -- | Yes |
+| Domain system (tribes) | -- | Yes |
+
+**The tier boundary is at the hook level, not the agent level.** Agent definitions are markdown files with zero runtime cost -- they all ship free. Hooks are runtime enforcement -- that is the paid value.
+
+---
+
 ## Project structure
 
 ```
 covenant-framework/
-  CLAUDE.md                          # The Constitution (33 sections)
-  AGENTS.md                          # Compact Codex project instructions
-  COMPLIANCE.md                      # Project-specific policy layer
-  install.sh                         # Install into existing projects
-  install-codex.ps1                  # Native Windows Codex installer
+  CLAUDE.md                 # The Constitution (36 sections)
+  COMPLIANCE.md             # Project-specific policy layer
+  install.sh                # Install into existing projects
   .claude/
-    agents/                          # 11 agent definitions
-    commands/                        # 36 slash commands
-    hooks/                           # 8 lifecycle hooks
-    settings.json                    # Hook wiring
-  .codex/
-    agents/                          # Codex role definitions
-    hooks/                           # Python hook adapter
-    config.toml                      # Codex project config
+    agents/                 # 12 agent definitions
+    commands/               # 16 slash commands (community)
+    hooks/                  # 4 lifecycle hooks (community)
+    settings.json           # Hook wiring
   registry/
-    agent-registry.json              # Agent registry (census of all agents)
-    orientation.json                 # Shared orientation state
-    baselines.json                   # Performance baselines
-    quality-benchmarks.json          # Peak performance records
-    dispositions.json                # Behavioral orientations
-    trust-registry.json              # External tool trust levels
-    skills.json                      # Demonstrated capabilities per agent type
+    agent-registry.json     # Census of all agents
+    orientation.json        # Shared orientation state
   memory/
-    user-model.json                  # Longitudinal user model
-    semantic/                        # Consolidated learnings
-    inheritance/                     # Exit reports from finished agents
-    parables/                        # Case studies (teaching examples)
-    epistles/                        # Structured memos between agents
-    covenants/                       # Project agreements
-    checkpoints/                     # State snapshots
+    inheritance/            # Exit reports from finished agents
+    semantic/               # Consolidated learnings
+    memos/                  # Structured memos between agents
+    covenants/              # Project agreements
+    checkpoints/            # State snapshots
 ```
 
 ---
 
-## Extending the framework
+## Extending
 
-**Add an agent:** Create `.claude/agents/<name>.md` with a description of when to use it and what tools it needs. See [CONTRIBUTING.md](CONTRIBUTING.md).
+**Add an agent:** Create `.claude/agents/<name>.md` with a description of when to use it and what tools it needs.
 
 **Add a command:** Create `.claude/commands/<name>.md`.
 
 **Add a hook:** Create `.claude/hooks/<name>.sh`, wire it in `settings.json`.
 
-**Add Codex support:** Update `AGENTS.md`, `.codex/agents/*.toml`, or `.codex/hooks/covenant_hook.py`. Add reusable protocols under `.agents/skills/<name>/SKILL.md`. See [docs/CODEX.md](docs/CODEX.md).
-
----
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---|---|
-| Hooks not firing | Check `settings.json` wiring. |
-| Codex hooks not firing | Check `.codex/hooks.json`. Test with a JSON fixture on stdin. |
-| Python not found | Hooks need `python3` or `python` on PATH. |
-| Agent will not spawn | Run `/agent-registry` to check limits. Run `/audit` for a health check. |
-| Something failed | `/acknowledge-loss` to acknowledge, then Futility Review to analyze. |
-| Wrong goal? | Invoke Goal Challenge to challenge the premise. |
-| Agents disagree | `/mediate` -- James mediates and writes a resolution. |
-| External tool untrusted | `/welcome` to evaluate its trust level. |
-| Back after time away | `/reinit` re-orients the system. Auto-triggers after 24h. |
-| Need to stop | `/binding` preserves work. `/reset` resets everything. |
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ---
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, desktop, or IDE extension) or OpenAI Codex CLI
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, desktop, or IDE extension) or [OpenAI Codex CLI](https://github.com/openai/codex)
 - Python 3.x (for hooks)
-- bash for Claude Code shell hooks (native on macOS/Linux, Git Bash on Windows). Codex hooks are Python-only.
-
----
-
-## Documentation
-
-- [Process Diagram](docs/PROCESS-DIAGRAM.md) -- How the system operates from session start through agent shutdown.
-- [Glossary](GLOSSARY.md) -- Plain-language definitions for every framework term.
-- [Contributing](CONTRIBUTING.md) -- How to extend the framework.
+- bash (native on macOS/Linux, Git Bash on Windows)
 
 ---
 
 ## License
 
-Covenant is dual-licensed under the Covenant Public License v1.0.
+Dual-licensed under the [Covenant Public License v1.0](./LICENSE).
 
 - **Tier 1 (Public):** Free to use, modify, and distribute.
-- **Tier 2 (Covenant Network):** Enhanced framework available exclusively to ventures onboarded into the Covenant Network via a Revenue Share Agreement with the Covenant Foundation.
-
-See [LICENSE](./LICENSE) for full terms.
+- **Tier 2 (Covenant Network):** Advanced enforcement available via the [Covenant Network](https://covenant.foundation/network).
 
 ---
 
-## Support
-
-If this framework is useful to you, consider supporting its development:
-
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/alexsalsali)
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-support-pink?style=flat&logo=github-sponsors)](https://github.com/sponsors/asalsali)
+<p align="center">
+  <a href="https://covenant.foundation">covenant.foundation</a> &nbsp;&middot;&nbsp;
+  <a href="https://buymeacoffee.com/alexsalsali">Buy Me a Coffee</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/sponsors/asalsali">Sponsor</a>
+</p>
