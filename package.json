@@ -1,0 +1,48 @@
+{
+  "name": "covenant-framework",
+  "version": "1.0.0",
+  "description": "A governance framework for multi-agent AI systems. Structure, lifecycle, and quality controls for AI agent orchestration.",
+  "bin": {
+    "covenant": "./bin/covenant.js"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "governance",
+    "multi-agent",
+    "orchestration",
+    "claude-code",
+    "codex",
+    "framework",
+    "llm"
+  ],
+  "author": "Alex Salsali <alex@covenant.foundation>",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asalsali/covenant-framework-community.git"
+  },
+  "homepage": "https://covenant.foundation",
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/alexsalsali"
+  },
+  "files": [
+    "bin/",
+    "CLAUDE.md",
+    "COMPLIANCE.md",
+    "THEOLOGY.md",
+    "CONTRIBUTING.md",
+    "GLOSSARY.md",
+    "LICENSE",
+    "install.sh",
+    "install-codex.ps1",
+    ".claude/",
+    "open-core/",
+    "registry/",
+    "memory/"
+  ],
+  "engines": {
+    "node": ">=16"
+  }
+}

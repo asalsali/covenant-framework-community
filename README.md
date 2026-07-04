@@ -56,7 +56,7 @@ npm install -g @anthropic-ai/claude-code
 
 # 2. Create a project and install Covenant
 mkdir my-project && cd my-project && git init
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework/master/install.sh | bash
+npx covenant-framework init
 
 # 3. Start working
 claude
@@ -325,3 +325,12 @@ Covenant is dual-licensed under the Covenant Public License v1.0.
 - **Tier 2 (Covenant Network):** Enhanced framework available exclusively to ventures onboarded into the Covenant Network via a Revenue Share Agreement with the Covenant Foundation.
 
 See [LICENSE](./LICENSE) for full terms.
+
+---
+
+## Support
+
+If this framework is useful to you, consider supporting its development:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/alexsalsali)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-support-pink?style=flat&logo=github-sponsors)](https://github.com/sponsors/asalsali)
