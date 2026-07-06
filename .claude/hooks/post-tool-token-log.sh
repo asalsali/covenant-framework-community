@@ -26,6 +26,6 @@ command -v cygpath >/dev/null 2>&1 && _CF_PROJECT_DIR="$(cygpath -m "$_CF_PROJEC
 export _CF_PROJECT_DIR
 export _CF_ERR_LOG="$_CF_PROJECT_DIR/registry/hook-errors.log"
 
-# Run module (cd to hooks dir for lib package resolution)
-cat | (cd "$SCRIPT_DIR" && "$PYTHON" -m lib.token_log) 2>>"$_CF_ERR_LOG"
-exit $?
+# Run module — stderr goes to BOTH Claude Code and the error log via tee
+cat | (cd "$SCRIPT_DIR" && "$PYTHON" -m lib.token_log) 2> >(tee -a "$_CF_ERR_LOG" >&2)
+exit ${PIPESTATUS[0]}
