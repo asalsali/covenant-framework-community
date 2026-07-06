@@ -67,7 +67,11 @@ case "$TIER" in
     ;;
 esac
 
-REPO="https://github.com/asalsali/covenant-framework.git"
+if [ "$TIER" = "community" ]; then
+  REPO="https://github.com/asalsali/covenant-framework-community.git"
+else
+  REPO="https://github.com/asalsali/covenant-framework.git"
+fi
 TMP_DIR=$(mktemp -d)
 
 if [ "$TIER" = "community" ]; then
@@ -255,8 +259,8 @@ if [ "$RUNTIME" = "codex" ] || [ "$RUNTIME" = "both" ]; then
   echo "  ✓  Codex skills:       .agents/skills/ ($CODEX_SKILL_COUNT skills)"
   echo "  ✓  Codex hooks:        .codex/hooks/covenant_hook.py"
 fi
-echo "  ✓  Registry:  registry/ (genealogy.json, spirit.json)"
-echo "  ✓  Memory:    memory/ (user-model, parables, epistles)"
+echo "  ✓  Registry:  registry/ (agent-registry.json, orientation.json)"
+echo "  ✓  Memory:    memory/ (inheritance, memos, semantic)"
 echo ""
 echo "  ══════════════════════════════════"
 echo "  Installation complete ($TIER tier)."
