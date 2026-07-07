@@ -1,0 +1,36 @@
+{
+  "created": "",
+  "description": "Covenant Framework Agent Registry",
+  "canon": {
+    "maxGenerations": 4,
+    "maxSiblings": 8,
+    "sabbathInterval": 10,
+    "mealLimitRoot": 120,
+    "mealWarnRoot": 50,
+    "mealLimitChild": 40,
+    "mealWarnChild": 20,
+    "babelThreshold": 12,
+    "tribalComplexityThreshold": 6
+  },
+  "floodCount": 0,
+  "revelation": {
+    "telos": "",
+    "description": "The project's ultimate success condition. Set by the user via the Interpreter. When fulfilled, the system has completed its purpose.",
+    "setAt": null,
+    "progress": [],
+    "covenantRef": null
+  },
+  "agents": [
+    {
+      "id": "root",
+      "type": "interpreter",
+      "status": "active",
+      "mandate": "Orchestrate the Covenant Framework",
+      "generation": 0,
+      "parentId": null,
+      "childIds": [],
+      "bornAt": "",
+      "toolCalls": 0
+    }
+  ]
+}

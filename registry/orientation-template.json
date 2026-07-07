@@ -1,0 +1,17 @@
+{
+  "description": "The Orientation -- shared orientation for all agents. Not instructions. Atmosphere.",
+  "currentMandate": "",
+  "spiritOfTheWork": "",
+  "whatToProtect": "",
+  "currentTemptations": [],
+  "whereWeAre": "",
+  "pentecostAt": null,
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "architecturalConstraints": {
+    "rootChildrenPolicy": "epoch-containers-only",
+    "exitReportPolicy": "no archival without exit report",
+    "compliancePolicy": "COMPLIANCE.md supplements the Constitution and never weakens it"
+  },
+  "revelationHistory": []
+}
