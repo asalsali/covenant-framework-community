@@ -44,5 +44,8 @@
   ],
   "engines": {
     "node": ">=16"
+  },
+  "scripts": {
+    "postinstall": "echo \"Governance installed. For the full CLI: pip install covenant-cli\""
   }
 }

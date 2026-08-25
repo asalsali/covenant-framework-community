@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Validate registry JSON
+        run: |
+          python3 -c "
+          import json, glob, sys
+          errors = 0
+          for f in glob.glob('registry/**/*.json', recursive=True):
+              try:
+                  json.load(open(f))
+                  print(f'OK: {f}')
+              except Exception as e:
+                  print(f'FAIL: {f} -- {e}')
+                  errors += 1
+          sys.exit(errors)
+          "
+
+      - name: Validate agent definitions
+        run: |
+          for agent in analyst executor futility-review goal-challenge guardian interpreter mediator scribe shepherd stress-tester synthesist writer; do
+            test -f ".claude/agents/$agent.md" && echo "OK: $agent.md" || (echo "MISSING: $agent.md" && exit 1)
+          done
+
+      - name: Validate CLAUDE.md
+        run: |
+          test -f CLAUDE.md || (echo "MISSING" && exit 1)
+          lines=$(wc -l < CLAUDE.md)
+          echo "CLAUDE.md: $lines lines"
+          test "$lines" -gt 100 || (echo "Too short" && exit 1)
+
+      - name: Syntax check install.sh
+        run: bash -n install.sh
+
+      - name: Syntax check Python hooks
+        run: |
+          for f in .claude/hooks/lib/*.py; do
+            python3 -c "import ast; ast.parse(open('$f').read())" && echo "OK: $f" || (echo "FAIL: $f" && exit 1)
+          done

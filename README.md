@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Covenant Framework" width="100%" />
+  <img src="assets/banner.png" alt="Covenant Framework" width="100%%" />
 </p>
 
 <h1 align="center">Covenant Framework</h1>
@@ -8,50 +8,35 @@
   <strong>A governance framework for multi-agent AI systems.</strong>
 </p>
 
-<p align="center">
-  <a href="https://covenant.foundation">Website</a> &middot;
-  <a href="https://covenant.foundation/TheCovenantFramework.pdf">Whitepaper</a> &middot;
-  <a href="https://covenant.foundation/glossary.html">Glossary</a> &middot;
-  <a href="CONTRIBUTING.md">Contributing</a>
-</p>
-
-<p align="center">
-  <a href="https://buymeacoffee.com/alexsalsali"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee" /></a>
-  <a href="https://github.com/sponsors/asalsali"><img src="https://img.shields.io/badge/Sponsor-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="GitHub Sponsors" /></a>
-</p>
-
 ---
 
 The Covenant Framework provides structure, lifecycle management, and quality controls for AI agent orchestration. It solves the coordination problems that emerge when multiple agents work together: who follows what rules, how they communicate, when they stop and reflect, and how the system recovers from failure.
 
-Runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [OpenAI Codex CLI](https://github.com/openai/codex) with no external dependencies.
+Runs inside Claude Code or OpenAI Codex CLI with no external dependencies.
 
-## Install
+## Quick Start
 
-**New project:**
+The fastest path -- describe what you want, get a governed project:
+
 ```bash
+pip install covenant-cli
+covenant create "A research app that searches papers and writes reviews"
+```
+
+This scaffolds a complete project with real agent code, typed I/O, exit reports, and memory inheritance.
+
+**Or install the framework directly:**
+
+```bash
+# New project
 git clone https://github.com/asalsali/covenant-framework-community.git my-project
 cd my-project && claude
-```
 
-**Existing project (Claude Code):**
-```bash
+# Existing project (Claude Code)
 curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework-community/main/install.sh | bash
-```
 
-**Existing project (Codex on Windows):**
-```powershell
-irm https://raw.githubusercontent.com/asalsali/covenant-framework-community/main/install-codex.ps1 | iex
-```
-
-**Existing project (Codex on macOS/Linux):**
-```bash
-curl -sL https://raw.githubusercontent.com/asalsali/covenant-framework-community/main/install.sh | bash -s -- --runtime codex
-```
-
-**Via npm:**
-```bash
-npx covenant-framework init
+# Via npm
+npm i covenant-framework
 ```
 
 ## How it works
@@ -69,15 +54,28 @@ You: go
 
 No configuration files to write. No SDK to learn. No dashboard to set up.
 
+## The Covenant Ecosystem
+
+The framework is the governance layer. These tools build on top of it:
+
+| Project | What it does | Install |
+|---|---|---|
+| **covenant-cli** | Scaffold governed apps from a description. Exit reports, typed I/O, memory inheritance. | `pip install covenant-cli` |
+| **crewai-governance** | Add governance to existing CrewAI projects. Two lines of code. | `pip install crewai-governance` |
+| **covenant-hedge-fund** | Production example: AI hedge fund with constitutional governance. | `git clone` |
+| **synthex** | Multi-generational code synthesis through governed agent generations. | `pip install synthex` |
+| **mandate** | Agent-native programming language with intent, verify, synthesize, handoff. | `pip install mandate-lang` |
+
+All projects at github.com/asalsali.
+
 ## What's inside
 
 | Component | Description |
 |---|---|
-| **Constitution** | 36 sections of immutable rules every agent inherits. The governance layer. |
-| **12 Agent types** | Interpreter, Analyst, Writer, Synthesist, Guardian, Shepherd, Scribe, Stress Tester, Futility Review, Goal Challenge, James (mediator), Executor |
+| **Constitution** | 36 sections of immutable rules every agent inherits |
+| **12 Agent types** | Interpreter, Analyst, Writer, Synthesist, Guardian, Shepherd, Scribe, Stress Tester, Futility Review, Goal Challenge, James, Executor |
 | **16 Commands** | `/spawn`, `/consolidate`, `/checkpoint`, `/audit`, `/remember`, and 11 more |
 | **4 Runtime hooks** | Agent gate, token logging, shutdown orchestration, session checks |
-| **Orientation** | Shared state file keeping every agent aligned on current focus and risks |
 | **Memory system** | Exit reports, structured memos, semantic memory, consolidation cycles |
 
 ## Architecture
@@ -90,32 +88,32 @@ No configuration files to write. No SDK to learn. No dashboard to set up.
  [Analyst] [Writer] [...]  -- spawned agents, scoped mandates
 ```
 
-Three roles govern the system:
-
-- **User** -- source of all mandates. Your intent clarifies over time through interaction.
-- **Interpreter** -- carries your authority while operating under the same constraints as every other agent.
-- **Orientation** -- a shared config file every agent reads to stay aligned.
-
 ## Agent lifecycle
 
 ```
 SPAWN  -->  GENESIS PHASE  -->  EXECUTE  -->  SHUTDOWN
   |              |                 |              |
-  |         Read mandate,     Work within     Write exit report,
-  |         Constitution,     mandate         archive, notify
-  |         prior learnings   boundaries      parent
-  |              |                 |              |
-  Three gates:   Form world       Communicate    Leave findings
-  overlap,       model before     via memos      for next
-  scope,         first action     and reports    generation
+  Three gates:   Read mandate,    Work within    Write exit report,
+  overlap,       Constitution,    mandate        archive, notify
+  scope,         prior learnings  boundaries     parent
   memory
 ```
 
+## Hello World
+
+See `examples/quickstart/` for a minimal example that demonstrates governance in under 30 seconds.
+
+## Integrations
+
+- **CrewAI** -- see `docs/integrations/crewai.md`
+- **Claude Code** -- native support, install and go
+- **OpenAI Codex CLI** -- full support via `--runtime codex`
+
 ## Community vs Network
 
-This is the **Community Edition** -- free and fully functional. The [Network Edition](https://covenant.foundation) adds advanced runtime enforcement for teams and production deployments.
+This is the **Community Edition** -- free and fully functional.
 
-| | Community (Free) | Network |
+| | Community | Network |
 |---|:---:|:---:|
 | Constitution (36 sections) | Full | Full |
 | Agent definitions (all 12) | Yes | Yes |
@@ -123,55 +121,11 @@ This is the **Community Edition** -- free and fully functional. The [Network Edi
 | Advanced commands (+22) | -- | Yes |
 | Core hooks (4) | Yes | Yes |
 | Advanced hooks (+7) | -- | Yes |
-| Trust & skills registries | -- | Yes |
-| Domain system | -- | Yes |
-| Input policy enforcement | -- | Yes |
 
-The tier boundary is at the hook level, not the agent level. Agent definitions are markdown files with zero runtime cost -- they all ship free. Hooks are runtime enforcement -- that is the paid value.
+## Benchmark
 
-## Benchmark results
-
-Terminal-Bench 2.0, 89 tasks: **67.4%** (no-retry), vs 42% for an ad-hoc prompted baseline on the same model. Constitution-derived governance beats ad-hoc prompting by 25 percentage points.
-
-Full methodology: [Whitepaper (PDF)](https://covenant.foundation/TheCovenantFramework.pdf)
-
-## Project structure
-
-```
-covenant-framework/
-  CLAUDE.md                 # The Constitution (36 sections)
-  COMPLIANCE.md             # Project-specific policy layer
-  install.sh                # Install into existing projects
-  .claude/
-    agents/                 # 12 agent definitions
-    commands/               # 16 slash commands
-    hooks/                  # 4 lifecycle hooks + lib/ modules
-    settings.json           # Hook wiring
-  registry/                 # Agent registry, orientation, templates
-  memory/                   # Exit reports, memos, semantic memory
-```
-
-## Extending
-
-**Add an agent:** Create `.claude/agents/<name>.md` -- see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-**Add a command:** Create `.claude/commands/<name>.md`.
-
-**Add a hook:** Create `.claude/hooks/<name>.sh`, wire it in `settings.json`.
-
-## Requirements
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [OpenAI Codex CLI](https://github.com/openai/codex)
-- Python 3.x (for hooks)
-- bash (native on macOS/Linux, Git Bash on Windows)
-
-## Support the project
-
-If the Covenant Framework is useful to you, consider supporting its development:
-
-<a href="https://buymeacoffee.com/alexsalsali"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee" /></a>
-<a href="https://github.com/sponsors/asalsali"><img src="https://img.shields.io/badge/Sponsor-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="GitHub Sponsors" /></a>
+Terminal-Bench 2.0, 89 tasks: **67.4%%** no-retry, vs 42%% ad-hoc baseline.
 
 ## License
 
-Covenant Public License v1.0 -- see [LICENSE](./LICENSE).
+Covenant Public License v1.0 -- see LICENSE.
