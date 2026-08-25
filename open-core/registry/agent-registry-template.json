@@ -1,0 +1,18 @@
+{
+  "created": "2026-01-01T00:00:00Z",
+  "description": "Covenant Framework Agent Registry",
+  "canon": {
+    "maxGenerations": 4,
+    "maxSiblings": 8,
+    "sabbathInterval": 10,
+    "babelThreshold": 12
+  },
+  "floodCount": 0,
+  "revelation": {
+    "telos": "",
+    "description": "Set via /charter or by the Interpreter.",
+    "setAt": null,
+    "progress": []
+  },
+  "agents": []
+}

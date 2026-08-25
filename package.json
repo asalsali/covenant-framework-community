@@ -1,6 +1,6 @@
 {
   "name": "covenant-framework",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "A governance framework for multi-agent AI systems. Structure, lifecycle, and quality controls for AI agent orchestration.",
   "bin": {
     "covenant-framework": "bin/covenant.js"
@@ -33,14 +33,14 @@
     "COMPLIANCE.md",
     "THEOLOGY.md",
     "CONTRIBUTING.md",
-    "GLOSSARY.md",
     "LICENSE",
     "install.sh",
     "install-codex.ps1",
     ".claude/",
     "open-core/",
     "registry/",
-    "memory/"
+    "memory/",
+    "examples/"
   ],
   "engines": {
     "node": ">=16"

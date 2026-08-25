@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "command": "bash .claude/hooks/pre-tool-agent-gate.sh",
+        "event": "PreToolUse"
+      },
+      {
+        "command": "bash .claude/hooks/pre-tool-input-policy.sh",
+        "event": "PreToolUse"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "command": "bash .claude/hooks/post-tool-token-log.sh",
+        "event": "PostToolUse"
+      }
+    ],
+    "SubagentStop": [
+      {
+        "command": "bash .claude/hooks/subagent-stop-shutdown.sh",
+        "event": "SubagentStop"
+      }
+    ]
+  }
+}
